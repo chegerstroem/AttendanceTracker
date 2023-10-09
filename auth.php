@@ -1,5 +1,4 @@
 <?php
-/* Author: Christian H */
 date_default_timezone_set('America/Chicago');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -16,9 +15,6 @@ ini_set('display_errors', 1);
         header("Location: ./login.php");
         exit();
     }
-    echo "<p>Row count not zero</p>";
-    echo "<p>$pw</p>";
-    echo "<p>", trim($record['Password']), "</p>";
     if(password_verify($pw, trim($record['Password']))){
         $sessionID = bin2hex(random_bytes(32));
         $sessQry = "IF EXISTS (SELECT 1 FROM SprintAssign.stlcc.Sessions WHERE Username = '$user') BEGIN UPDATE SprintAssign.stlcc.Sessions SET sessionKey = '$sessionID' END ELSE BEGIN INSERT INTO SprintAssign.stlcc.Sessions VALUES ('$sessionID', '$user', '$time') END";
