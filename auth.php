@@ -18,7 +18,7 @@ ini_set('display_errors', 1);
     // Get time in SQL datetime format
     $time = date('Y-m-d H:i:s');
     // Check for user in database - return to login with error if non-existent
-    if($stmt->rowCount() == 0){
+    if(!($record)){
         setcookie("loginStatus", "1", time()+3600, "/", "localhost", 0, 0);
         header("Location: ./login.php");
         exit();
