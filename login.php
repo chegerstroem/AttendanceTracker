@@ -1,16 +1,17 @@
 <?php
+/* 
+    Author     : Christian H - All code
+*/
+// Ensure time matches current timezone (as does the database)
 date_default_timezone_set('America/Chicago');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+// Get login status cookie value
 if(isset($_COOKIE['loginStatus'])){
     $status = $_COOKIE['loginStatus'];
 }
 ?>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to edit this template
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -18,11 +19,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <form action="auth.php" method="post">
+        <form action="auth.php" method="post"> <!-- Login form - posts to auth.php -->
             <div id="loginBox">
                 <p>Please enter your username and password.</p>
                 <?php
-                    if((isset($status) && $status !== "0")){
+                    if((isset($status) && $status !== "0")){ // Display error depending on login status (partially implemented)
                        echo "<p style='color:red'>Login Error</p>";
                     }
                     setcookie("loginStatus", "0", time()+3600, "/", "localhost", 0, 0);

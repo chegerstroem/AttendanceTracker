@@ -1,6 +1,5 @@
 /* 
-    Created on : Sep 23, 2023, 2:06:11 AM
-    Author     : Christian H
+    Author     : Christian H - All code
 */
 
 #loginBox {
@@ -41,8 +40,4 @@
 
 .loginControl > .button {
     min-width: 30%;
-}
-
-#user {
-    
 }
