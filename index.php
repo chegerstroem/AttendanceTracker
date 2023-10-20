@@ -6,7 +6,7 @@
 date_default_timezone_set('America/Chicago');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-    require_once "db.php"; // include db connection php (missing from code for security)
+    require_once "db.php"; // include db connection php
     if(!(isset($_COOKIE['sessionID']))) { // Check for session ID cookie, return to login if it's not present
         header("Location: ./login.php");
         exit();
@@ -20,7 +20,7 @@ ini_set('display_errors', 1);
         header("Location: ./login.php");
         exit();
     }
-    $AuthQry = "SELECT [Role] FROM SprintAssign.stlcc.Users WHERE UserID in (SELECT UserID FROM SprintAssign.stlcc.Sessions WHERE sessionKey = '$SessionID')";
+    $AuthQry = "SELECT [Role] FROM SprintAssign.stlcc.Users WHERE Username in (SELECT Username FROM SprintAssign.stlcc.Sessions WHERE sessionKey = '$SessionID')";
     $AuthStmt = $conn->query($AuthQry);
     $AuthRecord = $AuthStmt->fetch(PDO::FETCH_ASSOC);
     $auth = $AuthRecord['Role'];
