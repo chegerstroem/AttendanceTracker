@@ -25,7 +25,7 @@ ini_set('display_errors', 1);
     $AuthRecord = $AuthStmt->fetch(PDO::FETCH_ASSOC);
     $auth = $AuthRecord['Role'];
     if($auth == "0"){ // If unauthorized in the database, disallow login with unique login status (to be implemented)
-        setcookie("loginStatus", "2", "/", "localhost", 0, 0);
+        setcookie("loginStatus", "2");
         header("Location: ./login.php");
         exit();
     }

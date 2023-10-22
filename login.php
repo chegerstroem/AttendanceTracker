@@ -33,7 +33,7 @@ if(isset($_COOKIE['loginStatus'])){
                     if((isset($status) && $status !== "0")){ // Display error depending on login status (partially implemented)
                        echo "<p style='color:red'>Login Error</p>";
                     }
-                    setcookie("loginStatus", "0", time()+3600, "/", "localhost", 0, 0);
+                    setcookie("loginStatus", "0");
                 ?>
                 <div id="loginControls">
                     <input name="user" type="text" placeholder="Username" id="user" class="loginControl" required/><br>

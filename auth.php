@@ -19,7 +19,7 @@ ini_set('display_errors', 1);
     $time = date('Y-m-d H:i:s');
     // Check for user in database - return to login with error if non-existent
     if(!($record)){
-        setcookie("loginStatus", "1", time()+3600, "/", "localhost", 0, 0);
+        setcookie("loginStatus", "1");
         header("Location: ./login.php");
         exit();
     }
@@ -28,12 +28,12 @@ ini_set('display_errors', 1);
         $sessionID = bin2hex(random_bytes(32));
         $sessQry = "IF EXISTS (SELECT 1 FROM SprintAssign.stlcc.Sessions WHERE Username = '$user') BEGIN UPDATE SprintAssign.stlcc.Sessions SET sessionKey = '$sessionID' END ELSE BEGIN INSERT INTO SprintAssign.stlcc.Sessions VALUES ('$sessionID', '$user', '$time') END";
         $sessStmt = $conn->query($sessQry);
-        setcookie("sessionID", "$sessionID", time()+3600, "/", "localhost", 0, 0);
-        setcookie("loginStatus", "0", time()+3600, "/", "localhost", 0, 0);
+        setcookie("sessionID", "$sessionID");
+        setcookie("loginStatus", "0");
         header( "Location: ./index.php");
         exit();
     } else { // If unsuccessful, return to login with error
-        setcookie("loginStatus", "1", time()+3600, "/", "localhost", 0, 0);
+        setcookie("loginStatus", "1");
         header("Location: ./login.php");
         exit();
     }
