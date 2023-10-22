@@ -3,10 +3,13 @@
 */
 body {
     margin: 0px;
+    height: 100%;
+    background-color: rgb(228, 228, 228);
 }
 
 #loginBox {
     display: block;
+    background-color: white;
     padding: 20px;
     border: 1px lightgray solid;
     width: 300px;
@@ -18,10 +21,44 @@ body {
 
 #contentBox {
     display: block;
+    background-color: white;
     padding: 20px;
     margin: auto;
-    margin-top: 20px;
+    min-height: 85%;
     width: 80%;
+}
+
+#contentBox > h1, #contentBox > h2 {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+#contentBox > h1 {
+    text-align: center;
+}
+
+#contentBox table tr:nth-child(even){
+    background-color: rgba(0,20,150,.1);
+}
+
+#contentBox table {
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#contentBox table > thead {
+    font-weight: bold;
+}
+
+#contentBox table > thead td {
+    background-color: rgb(228, 228, 228);
+}
+
+#contentBox td {
+    font-family: 'Source Sans Pro', sans-serif;
+    border: none;
+    border-collapse: collapse;
+    padding: 20px;
 }
 
 #loginBox > p {
@@ -88,6 +125,10 @@ body {
     flex-shrink: 0;
 }
 
+.headerLogo:hover {
+    cursor: pointer;
+}
+
 .headerLogo > img {
     max-height: 100%;
     max-width: 100%;
@@ -112,7 +153,7 @@ body {
 
 .headerHeading > p {
     font-size: 20pt;
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     text-align: center;
     color: white;
     margin-top: 0;
@@ -130,7 +171,7 @@ body {
     background-color: rgb(0, 36, 83);
     border: none;
     font-size: 12pt;
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
     line-height: 70px;
     padding-left: 5px;

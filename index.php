@@ -21,7 +21,7 @@
         <!--Document header shows select buttons based on auth level -->
         <header role="banner" id="header">
             <div class="headerContent">
-                <div class="headerLogo">
+                <div class="headerLogo" onclick="operation('dashboard')">
                     <img src="img/logo.svg" alt="Saint Louis Community College Logo" href="index.php"/>
                 </div>
                 <div class="headerHeading">
@@ -40,20 +40,19 @@
                                 <button id='manageUsers' onclick='operation(this.id)'>Manage Users</button>";
                                 break;
                             case "2":
-                                echo "<button id='Students' onclick='operation(this.id)'>Students</button>
+                                echo "<button id='students' onclick='operation(this.id)'>Students</button>
                                 <button id='courses' onclick='operation(this.id)'>Courses</button>
                                 <button id='classes' onclick='operation(this.id)'>Classes</button>
                                 <button id='attendance' onclick='operation(this.id)'>Attendance</button>";
                                 break;
                             case "3":
-                                echo "<button id='Students' onclick='operation(this.id)'>Students</button>
+                                echo "<button id='students' onclick='operation(this.id)'>Students</button>
                                 <button id='courses' onclick='operation(this.id)'>Courses</button>
                                 <button id='classes' onclick='operation(this.id)'>Classes</button>
                                 <button id='attendance' onclick='operation(this.id)'>Attendance</button>";
                                 break;
                             case "4":
-                                echo "<button id='courses' onclick='operation(this.id)'>Courses</button>
-                                <button id='classes' onclick='operation(this.id)'>Classes</button>
+                                echo "<button id='classes' onclick='operation(this.id)'>Classes</button>
                                 <button id='attendance' onclick='operation(this.id)'>Attendance</button>";
                                 break;
                         }
@@ -62,6 +61,7 @@
             </div>
         </header>
         <div id="contentBox">
+            <!-- API results here -->
         </div>
     </body>
 </html>

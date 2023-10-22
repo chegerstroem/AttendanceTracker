@@ -12,10 +12,13 @@ function operation(option) { // Make asyncronous calls to content.php
         dataType: 'html',
         data: {operation: option},
         success:function(result){
-            console.log(result + " " + option);
              // Update contentBox with the results of the function
             document.getElementById("contentBox").innerHTML = result;
         }
     });
-  }
+}
 
+// execute php function "showDashboard()" on page load
+$(window).on("load",function() {
+    operation("dashboard");
+});
