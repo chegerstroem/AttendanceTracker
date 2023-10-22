@@ -23,6 +23,8 @@ switch($operation){ // parse operation and call function based on result
         break;
     case "manageUsers":
         break;
+    case "attendance":
+        break;
     default:
         echo "<p>No operation retrieved</p>";
         break;
@@ -33,7 +35,6 @@ function showCourses($auth){
     echo "<h2>Courses</h2>";
     switch($auth){
         case "1":
-            echo "<script>console.log('Getting Courses');</script>";
             echo "<p>Courses Here</p>";
             break;
         default:

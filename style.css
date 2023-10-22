@@ -112,6 +112,7 @@ body {
 
 .headerHeading > p {
     font-size: 20pt;
+    font-family: "Source Sans Pro", sans-serif;
     text-align: center;
     color: white;
     margin-top: 0;
@@ -120,8 +121,6 @@ body {
 
 .headerNav {
     display: block;
-    height: 70px;
-    line-height: 70px;
     margin-left: auto;
     flex-shrink: 0;
 }
@@ -129,8 +128,17 @@ body {
 .headerNav > button {
     color: rgb(230, 241, 255);
     background-color: rgb(0, 36, 83);
-    border-radius: 5px;
-    border-color: rgb(230, 241, 255);
-    font-size: 14pt;
-    padding: 5px;
+    border: none;
+    font-size: 12pt;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: bold;
+    line-height: 70px;
+    padding-left: 5px;
+    padding-right: 5px;
+    float: right;
+}
+
+.headerNav > button:hover {
+    cursor: pointer;
+    color: rgb(83, 133, 199);
 }

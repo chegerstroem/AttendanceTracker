@@ -7,7 +7,7 @@
 function operation(option) { // Make asyncronous calls to content.php
     
     $.ajax({
-        url:"content.php",
+        url:"api.php",
         type: "POST",
         dataType: 'html',
         data: {operation: option},
