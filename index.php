@@ -37,6 +37,13 @@ ini_set('display_errors', 1);
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <header role="banner" id="header">
+            <div class="headerContent">
+                <div class="headerLogo">
+                    <img src="img/logo.svg"/>
+                </div>
+            </div>
+        </header>
         <?php
             // Display unique content depending on auth level as per the database
             if($auth == "1") {

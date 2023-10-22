@@ -1,8 +1,22 @@
 /* 
     Author     : Christian H - All code
 */
+body {
+    margin: 0px;
+}
 
 #loginBox {
+    display: block;
+    padding: 20px;
+    border: 1px lightgray solid;
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#contentBox {
     display: block;
     padding: 20px;
     border: 1px lightgray solid;
@@ -40,4 +54,18 @@
 
 .loginControl > .button {
     min-width: 30%;
+}
+
+#header {
+    height: 100px;
+    background-color: rgb(0,36,83);
+    margin: 0px;
+}
+.headerContent {
+    padding: 15px;
+}
+
+.headerLogo {
+    width: 355px;
+    height: 60px;
 }

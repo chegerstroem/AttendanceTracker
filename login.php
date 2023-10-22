@@ -19,9 +19,16 @@ if(isset($_COOKIE['loginStatus'])){
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <header role="banner" id="header">
+            <div class="headerContent">
+                <div class="headerLogo">
+                    <img src="img/logo.svg"/>
+                </div>
+            </div>
+        </header>
         <form action="auth.php" method="post"> <!-- Login form - posts to auth.php -->
             <div id="loginBox">
-                <p>Please enter your username and password.</p>
+                <p>Please enter your STLCC user account details below to login.</p>
                 <?php
                     if((isset($status) && $status !== "0")){ // Display error depending on login status (partially implemented)
                        echo "<p style='color:red'>Login Error</p>";
