@@ -19,10 +19,8 @@ body {
 #contentBox {
     display: block;
     padding: 20px;
-    border: 1px lightgray solid;
     margin: auto;
-    width: 300px;
-    margin-top: 15px;
+    width: 80%;
 }
 
 #loginBox > p {

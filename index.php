@@ -44,20 +44,22 @@ ini_set('display_errors', 1);
                 </div>
             </div>
         </header>
-        <?php
-            // Display unique content depending on auth level as per the database
-            if($auth == "1") {
-                echo "<p>User is AppAdmin</p>";
-            } else if($auth == "2") {
-                echo "<p>User is QualifiedStaff</p>";
-            } else if($auth == "3") {
-                echo "<p>User is Instructor</p>";
-            } else if($auth == "4") {
-                echo "<p>User is Student</p>";
-            } else {
-                echo "<p>No Auth Set</p>";
-            }
-        ?>
+        <div id="contentBox">
+            <?php
+                // Display unique content depending on auth level as per the database
+                if($auth == "1") {
+                    echo "<p>User is AppAdmin</p>";
+                } else if($auth == "2") {
+                    echo "<p>User is QualifiedStaff</p>";
+                } else if($auth == "3") {
+                    echo "<p>User is Instructor</p>";
+                } else if($auth == "4") {
+                    echo "<p>User is Student</p>";
+                } else {
+                    echo "<p>No Auth Set</p>";
+                }
+            ?>
+        </div>
     </body>
 </html>
 
