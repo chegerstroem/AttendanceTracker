@@ -20,6 +20,7 @@ body {
     display: block;
     padding: 20px;
     margin: auto;
+    margin-top: 20px;
     width: 80%;
 }
 
@@ -50,8 +51,23 @@ body {
     padding-right: 10px;
 }
 
-.loginControl > .button {
-    min-width: 30%;
+.loginControl.button {
+    margin: 5px;
+    min-width: 40%;
+    height: 32px;
+    color: white;
+    background-color: rgb(0, 36, 83);
+    border: 1px solid rgb(0, 36, 83);
+    font-size: 14px;
+}
+
+.loginControl.button:hover {
+    background-color: rgb(0, 22, 51);
+    border-color: rgb(0,22,51);
+}
+
+.loginControl.button:active {
+    border-color: white;
 }
 
 #header {
@@ -60,10 +76,61 @@ body {
     margin: 0px;
 }
 .headerContent {
+    display: flex;
+    height: 70px;
     padding: 15px;
 }
 
 .headerLogo {
-    width: 355px;
-    height: 60px;
+    position: relative;
+    width: 300px;
+    min-width: 300px;
+    flex-shrink: 0;
+}
+
+.headerLogo > img {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.headerHeading {
+    height: 70px;
+    line-height: 70px;
+    width: fit-content;
+    flex-shrink: 0;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.headerHeading > p {
+    font-size: 20pt;
+    text-align: center;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.headerNav {
+    display: block;
+    height: 70px;
+    line-height: 70px;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.headerNav > button {
+    color: rgb(230, 241, 255);
+    background-color: rgb(0, 36, 83);
+    border-radius: 5px;
+    border-color: rgb(230, 241, 255);
+    font-size: 14pt;
+    padding: 5px;
 }

@@ -22,7 +22,10 @@ if(isset($_COOKIE['loginStatus'])){
         <header role="banner" id="header">
             <div class="headerContent">
                 <div class="headerLogo">
-                    <img src="img/logo.svg"/>
+                    <img src="img/logo.svg" alt="Saint Louis Community College Logo" href="index.php"/>
+                </div>
+                <div class="headerHeading">
+                    <p>Student Attendance Tracker</p>
                 </div>
             </div>
         </header>
