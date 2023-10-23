@@ -11,6 +11,7 @@ if(isset($_COOKIE['loginStatus'])){
     $status = $_COOKIE['loginStatus'];
 }
 ?>
+<!--xKy89Rt-->
 <!DOCTYPE html>
 <html>
     <head>

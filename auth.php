@@ -25,8 +25,11 @@ ini_set('display_errors', 1);
     }
     // Verify password with hash stored in database - If successful, create/update session entry in database
     if(password_verify($pw, trim($record['Password']))){
-        $sessionID = bin2hex(random_bytes(32));
-        $sessQry = "IF EXISTS (SELECT * FROM SprintAssign.stlcc.Sessions WHERE Username = '$user') BEGIN UPDATE SprintAssign.stlcc.Sessions SET sessionKey = '$sessionID' END ELSE BEGIN INSERT INTO SprintAssign.stlcc.Sessions VALUES ('$sessionID', '$user', '$time') END";
+        $sessionID = bin2hex(random_bytes(24));
+        $sessQry = "IF EXISTS (SELECT * FROM stlcc.Sessions WHERE Username = '$user') 
+        BEGIN UPDATE stlcc.Sessions SET sessionKey = '$sessionID', loginDateTime = '$time' WHERE Username = '$user' END
+        ELSE 
+        BEGIN INSERT INTO stlcc.Sessions VALUES ('$sessionID', '$user', '$time') END";
         $sessStmt = $conn->query($sessQry);
         setcookie("sessionID", "$sessionID");
         setcookie("loginStatus", "0");

@@ -92,6 +92,15 @@ function getUsertypeID($username) {
     return $IDRecord[0];
 }
 
+function getAdminID($username){
+    global $conn;
+
+   $adminIDQry = "SELECT AdminID FROM stlcc.Admins WHERE StaffID IN (SELECT StaffID FROM stlcc.Staff WHERE UserID IN (SELECT UserID FROM stlcc.Users WHERE Username = '$username'))";
+   $adminIDStmt = $conn->query($adminIDQry);
+   $adminIDRecord = $adminIDStmt->fetch(PDO::FETCH_NUM);
+   return $adminIDRecord[0];
+}
+
 /* showCourses()
  * Generates content for the courses page
  * Uses session cookie to determine username
@@ -179,7 +188,7 @@ function showClasses(){
             $id = getUsertypeID($username);
             $classQry = "SELECT ClassID, CourseID, ClassDate, StartTime, EndTime, [Days]
             FROM stlcc.Classes
-            WHERE InstructorID = $id";
+            WHERE InstructorID = '$id'";
             
             $classStmt = $conn->query($classQry);
             echo 
@@ -228,7 +237,9 @@ function showDashboard() {
     <h2>Welcome back, ".$nameArray[0]." ".$nameArray[1]."</h2>";
     switch($auth){
         case "1":
-            echo "Administrator ID: $usertypeID</p>";
+            $adminID = getAdminID($username);
+            echo "<p>Administrator ID: $adminID</p>";
+            echo "<p>Staff ID: $usertypeID</p>";
             break;
         case "2":
             echo "Instructor ID: $usertypeID</p>";
