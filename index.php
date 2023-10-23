@@ -13,10 +13,10 @@
     <head>
         <meta charset="UTF-8">
         <title>STLCC Attendance Tracker</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script src="https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js"></script>
-        <script src="action.js"></script>
+        <script src="js/jquery.redirect.js"></script>
+        <script src="js/action.js"></script>
     </head>
     <body>
         <!--Document header shows select buttons based on auth level -->
@@ -28,37 +28,43 @@
                 <div class="headerHeading">
                     <p>Student Attendance Tracker</p>
                 </div>
-                <div class="headerNav">
-                    <?php
-                        switch($auth) {
-                            case "1":
-                                echo "<button id='courses' onclick='operation(this.id)'>Courses</button>
-                                <button id='classes' onclick='operation(this.id)'>Classes</button>
-                                <button id='attendance' onclick='operation(this.id)'>Attendance</button>
-                                <button id='instructors' onclick='operation(this.id)'>Instructors</button>
-                                <button id='students' onclick='operation(this.id)'>Students</button>
-                                <button id='staff' onclick='operation(this.id)'>Staff</button>
-                                <button id='manageUsers' onclick='operation(this.id)'>Manage Users</button>";
-                                break;
-                            case "2":
-                                echo "<button id='students' onclick='operation(this.id)'>Students</button>
-                                <button id='courses' onclick='operation(this.id)'>Courses</button>
-                                <button id='classes' onclick='operation(this.id)'>Classes</button>
-                                <button id='attendance' onclick='operation(this.id)'>Attendance</button>";
-                                break;
-                            case "3":
-                                echo "<button id='students' onclick='operation(this.id)'>Students</button>
-                                <button id='courses' onclick='operation(this.id)'>Courses</button>
-                                <button id='classes' onclick='operation(this.id)'>Classes</button>
-                                <button id='attendance' onclick='operation(this.id)'>Attendance</button>";
-                                break;
-                            case "4":
-                                echo "<button id='classes' onclick='operation(this.id)'>Classes</button>
-                                <button id='attendance' onclick='operation(this.id)'>Attendance</button>";
-                                break;
-                        }
-                    ?>
-                </div>
+                <div class="headerRight">
+                    <div class="headerButtons">
+                        <img src="img/logout.png">
+                        <img src="img/user.png">
+                    </div>
+                    <div class="headerNav">
+                        <?php
+                            switch($auth) {
+                                case "1":
+                                    echo "<button id='courses':>Courses</button>
+                                    <button id='classes' >Classes</button>
+                                    <button id='attendance' >Attendance</button>
+                                    <button id='instructors' >Instructors</button>
+                                    <button id='students' >Students</button>
+                                    <button id='staff' >Staff</button>
+                                    <button id='manageUsers' >Manage Users</button>";
+                                    break;
+                                case "2":
+                                    echo "<button id='students' >Students</button>
+                                    <button id='courses' >Courses</button>
+                                    <button id='classes' >Classes</button>
+                                    <button id='attendance' >Attendance</button>";
+                                    break;
+                                case "3":
+                                    echo "<button id='students' >Students</button>
+                                    <button id='courses' >Courses</button>
+                                    <button id='classes' >Classes</button>
+                                    <button id='attendance' >Attendance</button>";
+                                    break;
+                                case "4":
+                                    echo "<button id='classes' >Classes</button>
+                                    <button id='attendance' >Attendance</button>";
+                                    break;
+                            }
+                        ?>
+                    </div>
+                </div>    
             </div>
         </header>
         <div id="contentBox">

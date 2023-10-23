@@ -16,6 +16,7 @@ function operation(option) {
         type: "POST",
         dataType: 'html',
         data: {operation: option},
+        cache: false,
         success:function(result){
             if (result.startsWith("<!--xKy89Rt-->")) { // If the result starts with this string, it's the login page; Redirect on the clientside
                 $.redirect('login.php');
@@ -29,5 +30,6 @@ function operation(option) {
 
 // execute php function "showDashboard()" on page load
 $(window).on("load",function() {
+    $(".headerNav button").on("click", function(){operation(this.id)});
     operation("dashboard");
 });

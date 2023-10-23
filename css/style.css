@@ -114,8 +114,10 @@ body {
 }
 .headerContent {
     display: flex;
-    height: 70px;
-    padding: 15px;
+    height: 80px;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .headerLogo {
@@ -160,10 +162,28 @@ body {
     margin-bottom: 0;
 }
 
-.headerNav {
+.headerButtons {
+    display: block;
+    height: 40px;
+}
+
+.headerButtons img {
+    height: 35px;
+    width: 35px;
+    padding-left: 10px;
+    float: right;
+}
+
+.headerRight {
     display: block;
     margin-left: auto;
     flex-shrink: 0;
+}
+
+.headerNav {
+    display: block;
+    height: 35px;
+    white-space: nowrap;
 }
 
 .headerNav > button {
@@ -173,7 +193,7 @@ body {
     font-size: 12pt;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
-    line-height: 70px;
+    line-height: 35px;
     padding-left: 5px;
     padding-right: 5px;
     float: right;
