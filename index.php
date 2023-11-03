@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="css/style.css">
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="js/jquery.redirect.js"></script>
-        <script src="js/action.js"></script>
+        <script src="js/action.js" defer></script>
     </head>
     <body>
         <!--Document header shows select buttons based on auth level -->
@@ -30,14 +30,14 @@
                 </div>
                 <div class="headerRight">
                     <div class="headerButtons">
-                        <img src="img/logout.png">
-                        <img src="img/user.png">
+                        <div id="logout" alt="Logout Button"></div>
+                        <div id="user" alt="User Details Button"></div>
                     </div>
                     <div class="headerNav">
                         <?php
                             switch($auth) {
                                 case "1":
-                                    echo "<button id='courses':>Courses</button>
+                                    echo "<button id='courses'>Courses</button>
                                     <button id='classes' >Classes</button>
                                     <button id='attendance' >Attendance</button>
                                     <button id='instructors' >Instructors</button>
@@ -58,7 +58,8 @@
                                     <button id='attendance' >Attendance</button>";
                                     break;
                                 case "4":
-                                    echo "<button id='classes' >Classes</button>
+                                    echo "<button id='courses' >Courses</button>
+                                    <button id='classes' >Classes</button>
                                     <button id='attendance' >Attendance</button>";
                                     break;
                             }
