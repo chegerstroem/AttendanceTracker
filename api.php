@@ -297,10 +297,8 @@ function manageUsers() {
     switch($auth){
         case "1":
             echo "<input type='text' placeholder='Search All Users' id='userSearchBox' onkeyup='userSearch(this.value)'></input>
-            <div id='userSearchResultsBox' class='userMgmtBox' onload='operation($(this).children(\":nth-child(1)\").innerHTML'>";
+            <div id='userSearchResultsBox' class='userMgmtBox' onload='operation($(this).children(\":nth-child(1)\").innerHTML)'>";
             userSearch();
-            echo "</div><script type='application/javascript'>$(.userMgmtBox > table > tbody > tr).onclick = function(){operation($(this).children(':nth-child(1)').innerHTML);};</script>";
-            
             break;
         default:
             echo "<h2 style='color: red'>Unauthorized</h2>";
@@ -319,7 +317,7 @@ function showStaff(){
     echo "<h1>Staff</h1>";
     switch($auth){
         case "1":
-            echo "<input type='text' placeholder='Search Users' id='userSearchBox' onkeyup='userSearch(this.value, \"f\")'></input>
+            echo "<input type='text' placeholder='Search Staff' id='userSearchBox' onkeyup='userSearch(this.value, \"f\")'></input>
             <div id='userSearchResultsBox'>";
             userSearch(null, 'f');
             echo "</div>";
@@ -353,6 +351,10 @@ function showInstructors(){
     }
 }
 
+/* showStudents()
+ * Generates content for the students page
+ * Returns: html code for students page
+ */
 function showStudents(){
     global $auth;
     global $username;
@@ -375,7 +377,6 @@ function showStudents(){
 
 /* showCourses()
  * Generates content for the courses page
- * Uses session cookie to determine username
  */
 function showCourses(){
     global $auth;
@@ -389,15 +390,16 @@ function showCourses(){
         case "4":
             $courseStmt = executeQuery("SELECT * FROM stlcc.Courses");
             echo 
-            "<table>
-                <thead>
-                    <tr>
-                        <td>Course ID</td>
-                        <td>Course Name</td>
-                        <td>Course Description</td>
-                    </tr>
-                </thead>
-                    <tbody>";
+            "<div class='resultsBox'>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Course ID</td>
+                            <td>Course Name</td>
+                            <td>Course Description</td>
+                        </tr>
+                    </thead>
+                        <tbody>";
             while ($courseRecord = incrementQuery($courseStmt, 1)) {
                 echo "<tr>";
                 foreach($courseRecord as $record) {
@@ -406,7 +408,7 @@ function showCourses(){
                 echo "</tr>";
             }
             echo    "</tbody>
-            </table>";
+            </table></div>";
             break;
         default:
             echo "<h2 style='color: red'>Unauthorized</h2>";
@@ -416,7 +418,6 @@ function showCourses(){
 
 /* showClasses()
  * Generates content for the classes page
- * Uses session cookie to determine username
  */
 function showClasses(){
     global $auth;
@@ -531,29 +532,34 @@ function showAttendance() {
         case "1":
         case "3":
             echo "<div id='attendanceBox'>";
-            echo     "<div class='attendGridItem' id='attendGridItem1'>All Student Percentage</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem1'>Average Student Attendance Percentage</div>";
             echo     "<div class='attendGridItem' id='attendGridItem2'>Average Student Percentage</div>";
-            echo     "<div class='attendGridItem' id='attendGridItem3'>All Student Lates</div>";
-            echo     "<div class='attendGridItem' id='attendGridItem4'>All Student Absences</div>";
-            echo     "<div class='attendGridItem' id='attendGridItem5'>Interactive Calendar</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem3'>Average Student Lates</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem4'>Average Student Absences</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem5'>Item5</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem6'>Interactive Calendar</div>";
             echo "</div>";
             break;
         case "2":
             echo "<div id='attendanceBox'>";
-            echo     "<div class='attendGridItem' id='attendGridItem1'>My Student Percentage</div>";
-            echo     "<div class='attendGridItem' id='attendGridItem2'>My Avergage Student Percentage</div>";
-            echo     "<div class='attendGridItem' id='attendGridItem3'>My Student Lates</div>";
-            echo     "<div class='attendGridItem' id='attendGridItem4'>My Student Absences</div>";
-            echo     "<div class='attendGridItem' id='attendGridItem5'>Interactive Calendar</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem1'>My Student Attendance Percentage</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem2'>My Student Late Percentage</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem3'>My Average Student Lates</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem4'>My Average Student Absences</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem5'>My Upcoming Classes</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem6'>Interactive Calendar</div>";
             echo "</div>";
             break;
         case "4":
-            echo "<div id='attendanceBox'>";
-            echo     "<div class='attendGridItem' id='attendGridItem1'>My Percentage</div>";
-            echo     "<div class='attendGridItem' id='attendGridItem2'>My Upcoming Classes</div>";
+            echo     "<div id='attendanceBox'>";
+            echo     "<div class='attendGridItem' id='attendGridItem1'>";
+            
+            echo     "</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem2'>My Late Percentage</div>";
             echo     "<div class='attendGridItem' id='attendGridItem3'>My Lates</div>";
             echo     "<div class='attendGridItem' id='attendGridItem4'>My Absences</div>";
-            echo     "<div class='attendGridItem' id='attendGridItem5'>Interactive Calendar</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem5'>My Upcoming Classes</div>";
+            echo     "<div class='attendGridItem' id='attendGridItem6'>Interactive Calendar</div>";
             echo "</div>";
             break;
     }
