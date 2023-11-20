@@ -35,7 +35,7 @@ if(isset($_COOKIE['loginStatus'])){
                 <p>Please enter your STLCC user account details below to log in.</p>
                 <?php
                     if((isset($status) && $status !== "0")){ // Display error depending on login status (partially implemented)
-                       echo "<p style='color:red'>Login Error</p>";
+                       echo "<p style='color:red'>Login Error: $status</p>";
                     }
                     setcookie("loginStatus", "0");
                 ?>

@@ -20,26 +20,28 @@ try {
     
     // Check if the session exists and if it's timestamp is less than 30 minutes old
     if (!($SessionRecord) || ($SessionRecord && ($sessionTime < strtotime("-30 minutes", $currTime)))) { // If no match was found or session expired, return to login page
+        setcookie("loginStatus", "4");
         header("Location: ./login.php");
         exit(0);
     }
 
     // Get auth level and username from database
-    $AuthQry = "SELECT [Role], Username FROM stlcc.Users WHERE Username in (SELECT Username FROM stlcc.Sessions WHERE sessionKey = '$SessionID')";
+    $AuthQry = "SELECT [UserTypeID], [UserID], [Username] FROM stlcc.Users WHERE UserID in (SELECT UserID FROM stlcc.Sessions WHERE sessionKey = '$SessionID')";
     $AuthStmt = $conn->query($AuthQry);
     $AuthRecord = $AuthStmt->fetch(PDO::FETCH_ASSOC);
-    $auth = $AuthRecord['Role'];
+    $auth = $AuthRecord['UserTypeID'];
+    $userID = $AuthRecord['UserID'];
     $username = $AuthRecord['Username'];
 
     //Session record exists and timestamp is less than 30 minutes old, update the timestamp if timestamp is at least one minute old
     if ($sessionTime < strtotime("-1 minute", $currTime)) {
-        $sessQry = "UPDATE stlcc.Sessions SET loginDateTime = '$currTimeSql' WHERE Username = '$username'";
+        $sessQry = "UPDATE stlcc.Sessions SET loginDateTime = '$currTimeSql' WHERE UserID = $userID";
         $sessStmt = $conn->query($sessQry);
     }
 
     // If unauthorized in the database, disallow login with unique login status (to be implemented)
     if(!(in_array($auth,["1", "2", "3", "4"], true))){ 
-        setcookie("loginStatus", "2");
+        setcookie("loginStatus", "5");
         header("Location: ./login.php");
         exit(0);
     }

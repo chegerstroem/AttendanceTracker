@@ -1,0 +1,43 @@
+/* 
+    Author     : Christian H - All code
+*/
+
+#loginBox {
+    display: block;
+    padding: 20px;
+    border: 1px lightgray solid;
+    margin: auto;
+    width: 300px;
+    margin-top: 15px;
+}
+
+#loginBox > p {
+    width: 80%;
+    display: block;
+    margin: auto;
+    border-bottom: 1px lightgray solid;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#loginControls {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+    gap: 5px;
+}
+
+.loginControl {
+    flex-basis: 30%;
+    gap: 20px;
+    height: 26px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.loginControl > .button {
+    min-width: 30%;
+}

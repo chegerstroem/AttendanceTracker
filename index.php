@@ -37,30 +37,31 @@
                         <?php
                             switch($auth) {
                                 case "1":
-                                    echo "<button id='courses'>Courses</button>
-                                    <button id='classes' >Classes</button>
-                                    <button id='attendance' >Attendance</button>
-                                    <button id='instructors' >Instructors</button>
-                                    <button id='students' >Students</button>
-                                    <button id='staff' >Staff</button>
-                                    <button id='manageUsers' >Manage Users</button>";
+                                    echo "<button id='courses' class='headerNavButton'>Courses</button>
+                                    <button id='classes' class='headerNavButton'>Classes</button>
+                                    <button id='attendance' class='headerNavButton'>Attendance</button>
+                                    <button id='instructors' class='headerNavButton'>Instructors</button>
+                                    <button id='students' class='headerNavButton'>Students</button>
+                                    <button id='staff' class='headerNavButton'>Staff</button>
+                                    <button id='manageUsers' class='headerNavButton'>Manage Users</button>";
                                     break;
                                 case "2":
-                                    echo "<button id='students' >Students</button>
-                                    <button id='courses' >Courses</button>
-                                    <button id='classes' >Classes</button>
-                                    <button id='attendance' >Attendance</button>";
+                                    echo "<button id='students' class='headerNavButton'>Students</button>
+                                    <button id='courses' class='headerNavButton'>Courses</button>
+                                    <button id='classes' class='headerNavButton'>Classes</button>
+                                    <button id='attendance' class='headerNavButton'>Attendance</button>";
                                     break;
                                 case "3":
-                                    echo "<button id='students' >Students</button>
-                                    <button id='courses' >Courses</button>
-                                    <button id='classes' >Classes</button>
-                                    <button id='attendance' >Attendance</button>";
+                                    echo "<button id='students' class='headerNavButton'>Students</button>
+                                    <button id='courses' class='headerNavButton'>Courses</button>
+                                    <button id='classes' class='headerNavButton'>Classes</button>
+                                    <button id='attendance' class='headerNavButton'>Attendance</button>";
                                     break;
                                 case "4":
-                                    echo "<button id='courses' >Courses</button>
-                                    <button id='classes' >Classes</button>
-                                    <button id='attendance' >Attendance</button>";
+                                    echo "<button id='courses' class='headerNavButton'>Courses</button>
+                                    <button id='classes' class='headerNavButton'>Classes</button>
+                                    <button id='attendance' class='headerNavButton'>Attendance</button>
+                                    <button id='showAttendWindow' class='headerNavButton'>Attend Class</button>";
                                     break;
                             }
                         ?>
