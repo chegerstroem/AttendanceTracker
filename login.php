@@ -10,6 +10,16 @@ ini_set('display_errors', 1);
 if(isset($_COOKIE['loginStatus'])){
     $status = $_COOKIE['loginStatus'];
 }
+if(isset($_COOKIE['redirect'])){
+    $redirect = $_COOKIE['redirect'];
+}
+
+$errorMessages = [
+    "1" => "Username does not exist.",
+    "2" => "Password is incorrect.",
+    "3" => "Your session has expired due to inactivity. Please re-enter your account details.",
+    "4" => "Your account is disabled. Please contact the system administrator for further information.",
+];
 ?>
 <!--xKy89Rt-->
 <!DOCTYPE html>
@@ -35,9 +45,12 @@ if(isset($_COOKIE['loginStatus'])){
                 <p>Please enter your STLCC user account details below to log in.</p>
                 <?php
                     if((isset($status) && $status !== "0")){ // Display error depending on login status (partially implemented)
-                       echo "<p style='color:red'>Login Error: $status</p>";
+                       echo "<p class='loginErrorMessage'>$errorMessages[$status]</p>";
                     }
-                    setcookie("loginStatus", "0");
+                    if (!(isset($redirect))) {
+                        setcookie("loginStatus", "0");
+                    }
+                    setcookie("redirect", "", time() - 3600);
                 ?>
                 <div id="loginControls">
                     <input name="user" type="text" placeholder="Username" id="user" class="loginControl" required/><br>

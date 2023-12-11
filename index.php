@@ -19,10 +19,9 @@
         <script src="js/action.js" defer></script>
     </head>
     <body>
-        <!--Document header shows select buttons based on auth level -->
         <header role="banner" id="header">
             <div class="headerContent">
-                <div class="headerLogo" onclick="operation('dashboard')">
+                <div class="headerLogo" onclick="operation('attendance')">
                     <img src="img/logo.svg" alt="Saint Louis Community College Logo" href="index.php"/>
                 </div>
                 <div class="headerHeading">
@@ -43,7 +42,7 @@
                                     <button id='instructors' class='headerNavButton'>Instructors</button>
                                     <button id='students' class='headerNavButton'>Students</button>
                                     <button id='staff' class='headerNavButton'>Staff</button>
-                                    <button id='manageUsers' class='headerNavButton'>Manage Users</button>";
+                                    <button id='administration' class='headerNavButton'>Administration</button>";
                                     break;
                                 case "2":
                                     echo "<button id='students' class='headerNavButton'>Students</button>
@@ -70,7 +69,6 @@
             </div>
         </header>
         <div id="contentBox">
-            <!-- API results here -->
         </div>
     </body>
 </html>

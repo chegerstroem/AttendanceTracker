@@ -7,6 +7,10 @@ h1, h2, h3 {
     margin-bottom: 0;
 }
 
+legend {
+    height: 24px;
+    margin: 0;
+}
 
 body {
     margin: 0px;
@@ -14,10 +18,11 @@ body {
     background: url('/img/stlcc-background.svg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
     background-position: center;
     background-color: rgb(228, 228, 228);
-    overflow: hidden;
+    overflow-y: auto;
+    
 }
 
 #loginBox {
@@ -70,7 +75,7 @@ body {
 }
 
 .infoTable tr:nth-child(even){
-    background-color: rgba(0,20,150,.1);
+    background-color: rgb(230,232,245);
 }
 
 .infoTable {
@@ -143,6 +148,12 @@ body {
 
 .loginControl.button:active {
     border-color: white;
+}
+
+.loginErrorMessage {
+    color: #d12626;
+    text-align: center;
+    margin: auto;
 }
 
 #header {
@@ -306,7 +317,7 @@ body {
 
 #attendanceBox {
     display: grid;
-    grid-template: 100px 100px 500px / 25% 25% 50%;
+    grid-template: 100px 100px 510px / 25% 25% 50%;
     grid-auto-flow: column;
     grid-gap: 10px;
     margin: auto;
@@ -359,7 +370,7 @@ body {
     z-index: 1;;
 }
 
-#attendClassWindow {
+#attendClassWindow, .manageUserSubmitWindow, .manageXSubmitWindow {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -368,8 +379,8 @@ body {
     margin: auto;
     font-family: 'Source Sans Pro', sans-serif;
     border-radius: 10px;
-    height: 400px;
     width: 400px;
+    height: fit-content;
     background-color: white;
     box-shadow: 2px 2px 5px gray;
     z-index: 2;
@@ -377,7 +388,11 @@ body {
     padding-top: 40px;
 }
 
-#attendClassWindowCloseButton {
+.submitXWindowAccentSpan {
+    color: rgb(0, 36, 83);
+}
+
+.windowCloseButton {
     background: url('/img/close.png');
     background-size: contain;
     height: 24px;
@@ -387,7 +402,7 @@ body {
     right: 5px;
 }
 
-#attendClassWindowCloseButton:hover {
+.windowCloseButton:hover {
     background: url('/img/close_hover.png');
     background-size: contain;
     cursor: pointer;
@@ -438,7 +453,8 @@ body {
     padding-bottom: 20px;
 }
 
-.attendFormDescription > p {
+.attendFormDescription > p,
+.userDetailBox > p {
     border-bottom: solid 1px lightgray;
 }
 
@@ -448,16 +464,538 @@ body {
     text-align: center;
 }
 
-.manageUserDetailsTable {
-    border: 1px solid black;
-    width: 100%;
+.manageUserDetailsTable,
+ .changePasswordTable,
+ .addXTable,
+ .manageXTable,
+ .userDetails {
+    width: 80%;
+    margin: auto;
     border-collapse: collapse;
 }
 
-.manageUserDetailsTable td {
-    border: 1px solid black;
+.manageUserDetailsTable td,
+.changePasswordTable td,
+.addXTable td,
+.manageXTable td:not(.descriptionCell),
+.userDetails td {
+    min-width: 50%;
     width: 50%;
     border-collapse: collapse;
-    height: 90px;    
+    height: 50px;
     text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    white-space: nowrap;
+}
+
+.manageXTable td.descriptionCell {
+    min-width: 50%;
+    width: 50%;
+    border-collapse: collapse;
+    height: 50px;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.manageUserDetailsTable td:last-of-type,
+ .changePasswordTable td:last-of-type,
+ .addXTable td:last-of-type,
+ .manageXTable td:last-of-type,
+ .userDetails td:last-of-type {
+    height: 30px;
+}
+
+.manageUserDetailsTable td:nth-child(even), 
+.changePasswordTable td:nth-child(even),
+.addXTable td:nth-child(even),
+.manageXTable td:nth-child(even),
+.userDetails td:nth-child(even) {
+    border-left: solid 1px lightgray;
+    border-collapse: collapse;
+    text-align: left;
+    padding-left: 80px;
+}
+
+.manageUserDetailsHeading, 
+.changePasswordHeading, 
+.addXHeading,
+.manageXHeading {
+    display: inline-block;
+    height: fit-content;
+    margin: 0;
+}
+
+.manageUserDetailsFieldSet, 
+.changePasswordFieldSet, 
+.addXFieldset,
+.manageXFieldset,
+.userDetailsFieldset {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.changePasswordTable input{
+    border: 1px solid gray;
+    border-radius: 0;
+    padding: 8px;
+}
+
+.manageUserDetailsHeading p,
+.addXHeading,
+.manageXHeading p {
+    margin: 0;
+}
+
+.manageUserEditButton,
+.manageUserConfirmButton,
+.manageXEditButton,
+.manageXConfirmButton {
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+}
+.manageUserEditButton.editButtonEdit,
+.manageXEditButton.editButtonEdit {
+    background-image: url('/img/edit.png');
+}
+
+.manageUserEditButton:hover.editButtonEdit:hover,
+.manageXEditButton:hover.editButtonEdit:hover {
+    background-image: url('/img/edit_hover.png');
+}
+
+.manageUserEditButton.editButtonClose,
+.manageXEditButton.editButtonClose {
+    background-image: url('/img/cancel.png');
+}
+
+.manageUserEditButton:hover.editButtonClose:hover,
+.manageXEditButton:hover.editButtonClose:hover {
+    background-image: url('/img/cancel_hover.png');
+}
+
+.manageUserConfirmButton,
+.manageXConfirmButton {
+    background-image: url('/img/confirm.png');
+}
+
+.manageUserConfirmButton:hover,
+.manageXConfirmButton:hover {
+    background-image: url('/img/confirm_hover.png');
+}
+
+.manageUserInputTitle,
+.addXInputTitle,
+.manageXInputTitle {
+    color: rgb(0, 36, 83);
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.manageUserEditBox,
+.manageXEditBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 24px;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    padding-right: 24px;
+    border-bottom: 1px solid lightgray;
+}
+
+.descriptionEditBox {
+    height: auto;
+}
+
+.manageUserEditBox > div,
+.manageXEditBox > div{
+    display: inline-block;
+}
+
+.manageUserInputContainer, 
+.manageUserDetailResultBox,
+.addXInputContainer,
+.manageXInputContainer,
+.manageXDetailResultBox,
+.addXResultBox {
+    text-align: left;
+    display: inline;
+    width: 330px;
+}
+
+.manageUserDetailResultBox p,
+.manageUserInputContainer input,
+.manageUserInputContainer label,
+.addXInputContainer input,
+.addXInputContainer input,
+.addXTextArea,
+.addXInputContainer select,
+.manageXInputContainer input,
+.manageXInputContainer select,
+.manageXDetailResultBox p,
+.manageXInputContainer textarea,
+.userDetailContainer p {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+    margin: 0;
+    width: 98%;
+    padding: 2px;
+    font-size: 12pt;
+}
+
+.addXInputDaysContainer input {
+    width: auto;
+}
+
+
+.decriptioncell {
+    white-space: wrap;
+}
+
+.manageUserInputContainer span,
+.addXInputContainer span,
+.manageXInputContainer span {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+}
+
+.manageUserDetailResultBox p,
+.manageUserInputContainer label,
+.manageXDetailResultBox p,
+.manageXInputContainer label,
+.addXResultBox p,
+.addXInputContainer label {
+    border: 2px solid transparent;
+    height: 20px;
+}
+
+.courseDescriptionBox p {
+    height: auto;
+}
+
+.manageUserInputContainer input.accountDisabledArea,
+ .addXInputContainer input.accountDisabledArea,
+ .manageXInputContainer input.classCanceledArea,
+  #userTypeSelectBox  {
+    width: fit-content;
+}
+
+.addXTextArea,
+.manageXTextArea {
+    height: 120px;
+    max-width: 98%;
+}
+
+.changePasswordSubmitRow > td,
+.addXSubmitRow > td,
+.manageXSubmitRow > td {
+    padding-top: 10px;
+}
+
+.changePasswordResultBox, .changeUserPasswordResultBox, .changeUserDetailResultBox, .manageXResultBox {
+    display: block;
+    height: 31px;
+    width: 50%;
+    margin: auto;
+}
+
+.changePasswordResultBox > p, .changeUserPasswordResultBox > p, .changeUserDetailResultBox > p, .manageXResultBox > p {
+    margin: 0;
+    padding-top: 10px;
+}
+
+.manageUserDetailsTable#userPassword input {
+    border: 1px solid gray;
+    border-radius: 0;
+    padding: 8px;
+}
+
+#reportCenterBox {
+    width: 95%;  
+    height: 85%;
+    margin: auto;
+    margin-top: 20px;
+    padding: 15px;
+}
+
+#reportControlBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 95%;
+    height: 15%;
+    margin: auto;
+    padding: 10px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: white;
+
+}
+
+#reportBox {
+    width: 95%;
+    height: 85%;
+    margin: auto;
+    padding: 10px;
+    padding-top: 0px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: white;
+    overflow: auto;
+}
+
+#reportBox > table > thead > tr{
+    top: 0;
+    position: sticky;
+}
+
+.reportControlContainer {
+    flex: 1 1 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: fit-content;
+    text-align: center;
+}
+
+.reportControlContainer > p{
+    margin-top: 0px;
+    margin-bottom: 3px;
+}
+
+.reportControlContainer select, .reportControlContainer input {
+    border: 1px solid black;
+    border-radius: 3px;
+    width: fit-content;
+    height: 32px;
+}
+
+.reportControlContainer select:disabled {
+    border-color: gray;
+    color: gray;
+}
+
+.reportQueryContainer select {
+    width: 180px;
+}
+
+.reportDownloadButton {
+    background-image: url("/img/print.png");
+    background-size: contain;
+    height: 32px;
+    width: 32px;
+    margin-left: 10px;
+}
+
+.reportDownloadButton:hover {
+    cursor: pointer;
+    background-image: url("/img/print_hover.png");
+}
+
+.reportGenerateButton {
+    height: 32px;
+    width: 80px;
+}
+
+.reportButtonSubContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.reportDetail {
+    font-weight: bold;
+}
+
+.reportTable tr:nth-child(even) > td {
+    background-color: rgb(230,232,245);
+}
+
+.reportTable tr:nth-child(even of .reportData) > td {
+    background-color: rgb(230,232,245);
+}
+
+.reportTable tr:nth-child(odd of .reportData) > td {
+    background-color: white;
+}
+
+.reportTable {
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.reportTable > thead {
+    font-weight: bold;
+}
+
+.reportTable > thead td {
+    background-color: rgb(228, 228, 228);
+}
+
+.reportTable td {
+    font-family: 'Source Sans Pro', sans-serif;
+    border: none;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+.reportPlaceholderText {
+    font-size: 16pt;
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+    margin-top: 10%;
+    justify-content: center;
+}
+
+.latestClassesBox {
+    width: fit-content;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.latestClassesBox > ul > li{
+    padding: 1px;
+}
+
+.adminNavBox {
+    display: flex;
+    width: 90%;
+    height: 80%;
+    margin: auto;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap:5%;
+}
+
+.adminColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 10%;
+}
+
+.adminLinkBox {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        height: 64px;
+        border: 3px solid rgb(0,36,83);
+        border-radius: 10px;
+        padding: 5px;
+}
+
+.adminLinkBox p{
+    padding: 20px;
+    width: 100%;
+    font-size: 20pt;
+    color: rgb(0, 36, 83);
+    text-align: center;
+}
+
+.adminLinkBox.adminAddEnrollmentBox {
+    width: 30%;
+    margin: auto;
+}
+
+.adminLinkBox {
+    cursor: pointer;
+}
+
+.adminLinkBox:hover p {
+    color: rgb(83, 133, 199);
+}
+
+.adminLinkBox:hover {
+    border-color:rgb(83, 133, 199)
+}
+
+.adminImage {
+    width: 64px;
+    height: 64px;
+}
+
+.addClassImage{
+    content: url("/img/icons/admin/add_class.png");
+}
+
+.addCourseImage{
+    content: url("/img/icons/admin/add_course.png");
+}
+
+.addUserImage{
+    content: url("/img/icons/admin/add_user.png");
+}
+
+.addAttendanceImage{
+    content: url("/img/icons/admin/add_attendance.png");
+}
+
+.addenrollmentImage{
+    content: url("/img/icons/admin/add_enrollment.png");
+}
+
+.editClassImage{
+    content: url("/img/icons/admin/edit_class.png");
+}
+
+.editCourseImage{
+    content: url("/img/icons/admin/edit_course.png");
+}
+
+.editUserImage{
+    content: url("/img/icons/admin/edit_user.png");
+}
+
+.editAttendanceImage{
+    content: url("/img/icons/admin/edit_attendance.png");
+}
+
+.adminLinkBox:hover .addClassImage {
+content: url("/img/icons/admin/add_class_hover.png");
+}
+
+.adminLinkBox:hover .addCourseImage {
+content: url("/img/icons/admin/add_course_hover.png");
+}
+
+.adminLinkBox:hover .addUserImage {
+content: url("/img/icons/admin/add_user_hover.png");    
+}
+
+.adminLinkBox:hover .addAttendanceImage {
+content: url("/img/icons/admin/add_attendance_hover.png");    
+}
+
+.adminLinkBox:hover .addEnrollmentImage{
+    content: url("/img/icons/admin/add_enrollment_hover.png");
+}
+
+.adminLinkBox:hover .editClassImage{
+    content: url("/img/icons/admin/edit_class_hover.png");
+}
+
+.adminLinkBox:hover .editCourseImage{
+    content: url("/img/icons/admin/edit_course_hover.png");
+}
+
+.adminLinkBox:hover .editUserImage{
+    content: url("/img/icons/admin/edit_user_hover.png");
+}
+
+.adminLinkBox:hover .editAttendanceImage{
+    content: url("/img/icons/admin/edit_attendance_hover.png");
 }
