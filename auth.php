@@ -22,7 +22,6 @@ ini_set('display_errors', 1);
     // Check for user in database - return to login with error if non-existent
     if(!($record)){
         setcookie("loginStatus", "1");
-        setcookie("redirect", "1");
         header("Location: ./login.php");
         exit();
     }

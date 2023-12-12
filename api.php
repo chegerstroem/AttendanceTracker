@@ -126,12 +126,12 @@ class REPORT_PDF extends FPDF
             $this->SetFillColor(255,255,255);
             $xPos = $this->GetX() + $CELL_WIDTH + 10;
             foreach($reportRecords["Records"] as $reportRecord) {
-                if (count($reportRecord["AttendDates"]) < 6) {
-                    $cellHeight = ($CELL_HEIGHT * 6) / count($reportRecord["AttendDates"]);
+                if (count($reportRecord["AttendDates"]) < 7) {
+                    $cellHeight = ($CELL_HEIGHT * 7) / count($reportRecord["AttendDates"]);
                     $cellHeightClassDate = $CELL_HEIGHT;
                 } else {
                     $cellHeight = $CELL_HEIGHT;
-                    $cellHeightClassDate = ($CELL_HEIGHT * count($reportRecord["AttendDates"])) / 6;
+                    $cellHeightClassDate = ($CELL_HEIGHT * count($reportRecord["AttendDates"])) / 7;
                 }
                 if ((($this->GetY() + $cellHeightClassDate) > ($this->GetPageHeight() - 60)) ||
                 (count($reportRecord["AttendDates"]) >= 10 && (($this->GetY() + $cellHeightClassDate) > ($this->GetPageHeight() - 70))) ||
@@ -144,7 +144,8 @@ class REPORT_PDF extends FPDF
                 "\nCourse Name:\n".$reportRecord['CourseName'].
                 "\nClass Date: ".$reportRecord['ClassDate'].
                 "\nStart Time: ".$reportRecord['ClassStart'].
-                "\nEnd Time: ".$reportRecord['ClassEnd'];
+                "\nEnd Time: ".$reportRecord['ClassEnd'].
+                "\nCanceled: ".($reportRecord['Canceled'] == 0 ? "Canceled: No" : "Canceled: Yes");
                 $yPos = $this->GetY();
                 $this->SetFont("SourceSansPro-Regular", "", 6);
                 $this->SetFillColor(220,220,220);
@@ -601,6 +602,7 @@ function generateReport ($reportType, $reportQuery = null, $reportStart = null, 
 	, u.FirstName
 	, u.LastName
     , co.CourseName
+    , cd.Canceled
     FROM stlcc.ClassDates cd
     JOIN stlcc.Enrollment e ON e.ClassID = cd.ClassID
     JOIN stlcc.Classes c ON c.ClassID = cd.ClassID
@@ -670,6 +672,13 @@ function generateReport ($reportType, $reportQuery = null, $reportStart = null, 
                     "AttendTime"=>$currAttendRecord["AttendTime"],
                     "Late"=>"No"];
             }
+        } else if ($currAttendRecord["Canceled"] == "1") {
+            $studentAttendDates[] = [
+                "UserID"=>$currAttendRecord["UserID"],
+                "LastName"=>$currAttendRecord["LastName"],
+                "FirstName"=>$currAttendRecord["FirstName"],
+                "AttendTime"=>"N/A",
+                "Late"=>"N/A"];
         } else {
             $studentAttendDates[] = [
                 "UserID"=>$currAttendRecord["UserID"],
@@ -685,6 +694,7 @@ function generateReport ($reportType, $reportQuery = null, $reportStart = null, 
             $reportRecord["ClassDate"] = $currAttendRecord["ClassDate"];
             $reportRecord["ClassStart"] = $currAttendRecord["ClassStart"];
             $reportRecord["ClassEnd"] = $currAttendRecord["ClassEnd"];
+            $reportRecord["Canceled"] = $currAttendRecord["Canceled"];
 
             $reportRecord["AttendDates"] = $studentAttendDates;
             $reportRecords[$currAttendRecord["ClassID"].",".$currAttendRecord["ClassDate"]] = $reportRecord;
@@ -1351,6 +1361,7 @@ function showReport ($reportRecords) {
             "<span class='reportDetail'>Class Date: </span>".$reportRecord["ClassDate"]."<br>".
             "<span class='reportDetail'>Start Time: </span>".$reportRecord["ClassStart"]."<br>".
             "<span class='reportDetail'>End Time: </span>".$reportRecord["ClassEnd"]."<br>".
+            "<span class='reportDetail'>Canceled: </span>".($reportRecord['Canceled'] == 0 ? "Canceled: No" : "Canceled: Yes")."<br>".
                 "</p>
             </td>";
             $first = true;
